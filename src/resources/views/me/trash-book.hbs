@@ -1,0 +1,85 @@
+<div class="mt-4">
+  <div>
+     <h3>Danh sách đặt phòng bị xóa</h3>
+     <a href="/me/stored/books">quay lai</a>
+  </div>
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">description</th>
+      <th scope="col">deleted At</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {{#each book}}
+    <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{ this.name }}</td>
+      <td>{{ this.description }}</td>
+      <td>{{ this.deleted }}</td>
+      <td>
+        <a href="/me/trash/books"  type="button" data-id="{{ this._id}}" class="btn btn-link btn-restore">Khôi phục</a>
+
+        <a href="" data-id="{{this._id}}"  type="button" data-toggle="modal" data-target="#deleteBook" >Xóa</a>
+
+      </td>
+    </tr>
+    {{else}}
+    <tr>
+    <td colspan="4" class="text-center"> Thùng rác trống
+       <a class="nav-link disabled" href="/me/stored/books" style="color:blue ;">Danh sách đặt phòng</a>
+    </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div>
+  <div class="modal fade" id="deleteBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Bạn có muốn xóa sách này không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{{!-- delete form book --}}
+ <form method="post" name="delete-form" action="/books/{{book._id}}?_method=DELETE"></form>
+<form method="post" name="restore-form" action="/books/{{book._id}}?_method=DELETE"></form>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var bookId;
+    var btnDeleteBook = document.getElementById('deleteBook')
+    var deleteForm = document.forms['delete-form']
+    var restoreForm = document.forms['restore-form']
+    var restoreBtn = $('.btn-restore')
+    $('#deleteBook').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) 
+      bookId = button.data('id')
+    })
+
+   
+    btnDeleteBook.onclick = function() {
+      deleteForm.action= '/books/'+ bookId +'/force?_method=DELETE'
+      deleteForm.submit();
+    }
+    restoreBtn.click(function (e) {
+      console.log(  $(this).data('id') )
+      var bookIdRestore =   $(this).data('id')
+      e.preventDefault()
+      restoreForm.action= '/books/'+ bookIdRestore +'/restore?_method=PATCH'
+      restoreForm.submit();
+    })
+  })
+ 
+
+</script>
