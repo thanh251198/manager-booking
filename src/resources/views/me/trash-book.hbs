@@ -21,12 +21,10 @@
       <td>{{ this.description }}</td>
       <td>{{ this.deleted }}</td>
       <td>
-        {{!-- <div class="style-button"> --}}
         <a href="/me/trash/books"  type="button" data-id="{{ this._id}}" class="btn btn-link btn-restore">Khôi phục</a>
-       {{!-- </div> --}}
-       {{!-- <div class="style-button"> --}}
+
         <a href="" data-id="{{this._id}}"  type="button" data-toggle="modal" data-target="#deleteBook" >Xóa</a>
-       {{!-- </div> --}}
+
       </td>
     </tr>
     {{else}}
