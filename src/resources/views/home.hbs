@@ -1,0 +1,43 @@
+<div class="mt-4">
+  <div class="d-flex">
+    <div class="mr-auto p-2">
+      <p>Danh sách khách sạn</p>
+    </div>
+    <div class="p-2">
+      <form class="form-inline mr-2 my-lg-0">
+        <input id="SearchName"  class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+ <div class="row" id="ListHotel">
+  {{#each books}}
+   <div class="col-sm-6 col-lg-4">
+    <div class="card card-book-item" >
+     <a href="/books/{{this.slug}}">
+      <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ this.name }}</h5>
+        <p class="card-text">{{ this.description }}</p>
+        {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+      </div>
+     </a>
+    </div>
+    </div>
+  {{/each}}
+ 
+ </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    $(document).ready(function(){
+      $("#SearchName").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        console.log(value)
+        $("#ListHotel div").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  })
+</script>

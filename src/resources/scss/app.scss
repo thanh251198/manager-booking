@@ -1,0 +1,22 @@
+@import 'variables';
+
+.container{
+ color: $red-color;
+ font-size: 1rem;
+}
+.card-book-item{
+ margin-top :10px;
+}
+.card-img-top{
+ height:300px;
+ width: 100%;
+}
+.style-button{
+ width:150px;
+ height:30px
+
+}
+.style-image{
+    width:350px;
+    height: auto;
+}
