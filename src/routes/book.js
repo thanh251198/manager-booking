@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bookController = require('../app/controllers/BookController')
-// newsController
+
 router.get('/create', checkAuthenticated, bookController.create)
 router.get('/:id/edit', bookController.edit)
 router.post('/store', checkAuthenticated, bookController.store)

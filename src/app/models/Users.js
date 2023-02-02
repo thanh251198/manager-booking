@@ -9,9 +9,9 @@ const User = new Schema(
     name: { type: String, require:true },
     pass: { type: String, require:true }
   }
-  // ,{
-  //   timestamps:true
-  // }
+  ,{
+    timestamps:true
+  }
   );
   
 

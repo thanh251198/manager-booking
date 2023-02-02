@@ -12,6 +12,11 @@ class AuthenController {
   index(req, res, next){
     res.render('authen/login')
   }
+  
+  logout(req, res, next){
+    res.clearCookie("token");
+    res.redirect('/login')
+  }
 
   async login(req, res, next) {
     var username = req.body.name
@@ -23,7 +28,7 @@ class AuthenController {
       }).then( async data => 
         { 
           if (data) {
-            var token = jwt.sign({data: data}, 'authen')
+            var token = jwt.sign({data: data}, 'authen', { expiresIn: 60 * 60 })
             res.cookie('token', token, {expire: 60 + Date.now()})
             return res.redirect('/')
           } else {

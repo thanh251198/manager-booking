@@ -27,4 +27,3 @@ class MeController {
  }
 }
 module.exports = new MeController;
-// tao doi tuong cua newscontoller và export ra ngoai

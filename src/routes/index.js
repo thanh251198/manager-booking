@@ -12,7 +12,6 @@ function route(app) {
 }
 function checkAuthenticated(req,res, next) {
     if(req.cookies.token){
-        // console.log("aaa")
      return next()
     }else{
      res.redirect('/login')

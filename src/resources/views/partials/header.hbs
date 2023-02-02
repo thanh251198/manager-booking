@@ -12,6 +12,23 @@
           <a class="nav-link" href="/books/create">Thêm lịch đặt phòng</a>
         </li>
       </ul>
+      
+      <form name="logout" action="/login/logout" method="get">
+        <button type="submit" class="btn btn-dark" style="width:150px ;">Đăng xuất</button>
+      </form>
     </div>
   </nav>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btnDeleteBook = document.getElementById('logout')
+  var deleteForm = document.forms['logout']
+  console.log('hh')
+  btnDeleteBook.onclick = function() {
+    console.log('hha')
+      deleteForm.action= '/login/logout'
+      deleteForm.submit();
+    }
+})
+
+</script>
